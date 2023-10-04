@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: streamwizard-backend-command
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: streamwizard-backend-command
