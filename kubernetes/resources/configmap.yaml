@@ -15,7 +15,7 @@ data:
           "port": 9090
         },
         "commands": {
-          "host": "streamwizard-backend-commands-service",
+          "host": "streamwizard-backend-command-service",
           "port": 9090
         },
         "irc": {
