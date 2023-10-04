@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamwizard-backend-command
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamwizard-backend-command
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled  # This annotation enables automatic injection
+      labels:
+        app: streamwizard-backend-command
+    spec:
+      containers:
+        - name: streamwizard-backend-command
+          image: ghcr.io/streamerbuddybot/twitch_irc:1074c18098e9eddf74d91611f30416da4aac770b
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: streamwizard-backend
+          volumeMounts:
+            - name: grpc-dns
+              mountPath: /usr/src/app/config.json
+              subPath: config.json
+              readOnly: true
+      volumes:
+        - name: grpc-dns
+          configMap:
+            name: grpc-dns

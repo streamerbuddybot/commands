@@ -1,0 +1,12 @@
+resources:
+- deployment.yaml
+- service.yaml
+- configmap.yaml
+# - ingress.yaml
+
+commonLabels:
+  app: streamwizard-backend-command
+
+commonAnnotations:
+  app: streamwizard-backend-command-annontations
+
