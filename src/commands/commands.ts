@@ -4,6 +4,7 @@ import { ChatMessage } from "../types/command"; // Update import statement for T
 import { Tags } from "../proto/chatMessage"; // Update import statement for Tags type
 import extractVariables from "../functions/checkVariable";
 import DatabaseVariableCheck from "../functions/DatabaseVariableCheck";
+import DatabaseFunctionCheck from "../functions/DatabaseFunctionCheck";
 
 async function handleCommand(command: ChatMessage) {
   // Destructure the command object
@@ -39,6 +40,15 @@ async function handleCommand(command: ChatMessage) {
     //return the message
     return responseMessageArray.join(" ");
   }
+
+  //if the command has a function
+  const intergartion = commandResponse.function;
+
+  const response = await DatabaseFunctionCheck(intergartion, channel, channelID, +userID, parts, username, responseMessage);
+
+  const responseMessageArray = await extractVariables(response, channel, channelID, +userID, parts, username, tags as Tags);
+
+  return responseMessageArray.join(" ");
 }
 
 export { handleCommand };

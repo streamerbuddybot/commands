@@ -1,20 +1,28 @@
 {
   "grpcServer": {
-    "port": 9092,
+    "port": 9090,
     "host": "0.0.0.0"
   },
   "grpcClients": {
-    "endpoint": {
+    "commands": {
       "host": "0.0.0.0",
       "port": 9090
     },
-    "commands": {
+    "endpoint": {
       "host": "0.0.0.0",
       "port": 9091
     },
-    "irc": {
+    "eventsub": {
       "host": "0.0.0.0",
       "port": 9092
+    },
+    "spotifyAPI": {
+      "host": "0.0.0.0",
+      "port": 9093
+    },
+    "irc": {
+      "host": "0.0.0.0",
+      "port": 9094
     }
   }
 }

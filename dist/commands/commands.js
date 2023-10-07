@@ -16,6 +16,7 @@ exports.handleCommand = void 0;
 const commandDB_1 = require("../databases/commandDB");
 const userlevel_1 = require("../functions/userlevel");
 const checkVariable_1 = __importDefault(require("../functions/checkVariable"));
+const DatabaseFunctionCheck_1 = __importDefault(require("../functions/DatabaseFunctionCheck"));
 function handleCommand(command) {
     return __awaiter(this, void 0, void 0, function* () {
         // Destructure the command object
@@ -45,6 +46,11 @@ function handleCommand(command) {
             //return the message
             return responseMessageArray.join(" ");
         }
+        //if the command has a function
+        const intergartion = commandResponse.function;
+        const response = yield (0, DatabaseFunctionCheck_1.default)(intergartion, channel, channelID, +userID, parts, username, responseMessage);
+        const responseMessageArray = yield (0, checkVariable_1.default)(response, channel, channelID, +userID, parts, username, tags);
+        return responseMessageArray.join(" ");
     });
 }
 exports.handleCommand = handleCommand;

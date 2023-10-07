@@ -13,6 +13,8 @@ export default async function checkvariable(
   tags: Tags
 ) {
   let messageArray = message.trim().split(" ");
+
+  
   const newArray = await Promise.all(
     messageArray.map(async (word, index) => {
       //if it has a variable
