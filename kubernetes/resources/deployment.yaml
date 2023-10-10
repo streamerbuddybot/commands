@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: streamwizard-backend-command
-          image: ghcr.io/streamerbuddybot/commands:30d260d08dfc52dbdb8a2962f83b85ba7c238a29
+          image: ghcr.io/streamerbuddybot/commands:fd0bca831d53cb0b463b79508ce53ffac91440a2
           ports:
             - containerPort: 80
           envFrom:
