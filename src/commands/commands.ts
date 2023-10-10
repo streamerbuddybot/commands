@@ -11,12 +11,11 @@ async function handleCommand(command: ChatMessage) {
   // Destructure the command object
   const { channel, message, username, channelID, tags, userID } = command;
 
-  if (channel === "streamwizardbot") return;
 
   console.log(`[${channel}] ${username}: ${message}`);
 
   // If any of the required properties are missing, return
-  if (!message || !channel || !username || !channelID || !userID || !tags) return;
+  if (!message || !channel || !username || !channelID || !userID || !tags) return 
 
   // split the message into a string array
   const parts = message.trim().split(" ");
@@ -52,7 +51,7 @@ async function handleCommand(command: ChatMessage) {
 
     // check for variables
 
-    const response = await new Promise<String>((resolve, reject) => {
+    const response = await new Promise<string>((resolve, reject) => {
       checkVariable.checkVariable(payload, (err, response) => {
         if (err) {
           console.error(err);
