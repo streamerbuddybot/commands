@@ -1,18 +1,18 @@
 import * as grpc from "@grpc/grpc-js";
 import { Request, Response, UnimplementedChatMessageServiceService, ChatMessageServiceClient } from "../proto/chatMessage";
 import { handleCommand } from "../commands/commands";
-import * as config from "../config.json"
+import * as config from "../config.json";
 
 const server = new grpc.Server();
-const port = config.grpcServer.port;
-const host = config.grpcServer.host;
+const port = config.commands.port;
+const host = config.commands.host;
 
 async function grpcServer() {
   const serviceImpl = {
     SendMessage: async (call: grpc.ServerUnaryCall<Request, Response>, callback: grpc.sendUnaryData<Response>) => {
       const channel = call.request?.channel;
       const response = call.request!.toObject();
-      if(!response) return callback(null, new Response({ channel: channel, message: "test" }));
+      if (!response) return callback(null, new Response({ channel: channel, message: "Failed" }));
 
       const returnReponse = await handleCommand(response);
 
