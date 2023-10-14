@@ -32,7 +32,7 @@ async function handleCommand(command: ChatMessage) {
 
   // Check if the user has the correct userlevel
   const permission = await checkUserlevel(commandResponse.userlevel, tags as Tags);
-  if (!permission) return;
+  if (!permission) return "You don't have permission to use this command"
 
   const cooldown = commandResponse.cooldown;
   let responseMessage = commandResponse.message;
